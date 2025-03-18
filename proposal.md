@@ -110,6 +110,29 @@ This question aims to identify the distinct musical characteristics of commercia
    - By analyzing the audio features of her most successful tracks (e.g., *Shake It Off*, *Blank Space*, *Anti-Hero*), we can investigate whether her musical attributes align with broader trends in hit songs.  
    - A comparative study with her lower-charting songs will highlight whether any specific musical attributes contributed to their differing levels of success.  
 
+#### **Variables Involved**  
+- **Billboard Chart Data:**  
+  - `song_title` (string)  
+  - `artist` (string)  
+  - `peak_position` (integer) – highest rank achieved  
+  - `weeks_on_chart` (integer) – total number of weeks on the chart  
+
+- **Spotify Audio Features:**  
+  - `tempo` (BPM) – speed of the song  
+  - `energy` (float) – intensity and loudness (0-1)  
+  - `danceability` (float) – how suitable the song is for dancing (0-1)  
+  - `valence` (float) – emotional positivity (0-1)  
+  - `loudness` (dB) – overall sound level  
+  - `speechiness` (float) – presence of spoken words (0-1)  
+  - `instrumentalness` (float) – likelihood of being an instrumental track (0-1)
+
+#### **New Variables to be Created**  
+- `hit_song` (binary) – 1 if a song peaked in the **top 10** and remained on the chart for **at least 10 weeks**, 0 otherwise.  
+- `feature_z_score` – Standardized version of each audio feature to compare across different scales.  
+
+#### **External Data to be Merged**  
+- Spotify’s audio feature dataset (via song title and artist name matching).
+- 
 ---
 
 ### **Question 2: How have music trends evolved over the past decade?**  
@@ -137,7 +160,20 @@ Music trends shift over time due to changes in audience preferences, production 
 4. **Case Study: The Shift from Upbeat Pop to Darker, Moodier Music**  
    - Compare the valence and tempo of early 2010s hits (e.g., *Katy Perry’s* *Teenage Dream*) to late 2010s hits (e.g., *Billie Eilish’s* *Bad Guy*).  
    - Investigate whether pop music has become **slower, darker, and more melancholic** over time, reflecting shifting listener preferences.
-  
+
+#### **Variables Involved**  
+- **Time-based Aggregation:**  
+  - `year` (integer) – extracted from release date  
+- **Spotify Audio Features:** (same as Research Question 1)  
+- **Genre Information:**  
+  - `primary_genre` (categorical) – main genre of the song  
+
+#### **New Variables to be Created**  
+- `yearly_avg_feature` – Annual average of each audio feature to observe trends over time.  
+- `dominant_genre` – The most frequent genre for each year based on song counts.  
+
+#### **External Data to be Merged**  
+- Genre classification data from an external music database (if not available in Billboard/Spotify datasets).
 
 ### **Question 3: Do different genres have distinct success factors?**  
 
@@ -156,7 +192,20 @@ This question examines whether different musical genres rely on unique audio fea
 
 3. **Case Study: Pop vs. Hip-Hop**  
    - Compare key features (e.g., tempo, energy, and speechiness) between **pop hits** and **hip-hop hits**.  
-   - Determine whether hip-hop’s lyrical focus (high speechiness) influences its success differently than pop music’s reliance on danceability.  
+   - Determine whether hip-hop’s lyrical focus (high speechiness) influences its success differently than pop music’s reliance on danceability.
+  
+#### **Variables Involved**  
+- **Billboard Chart Data:**  
+  - `song_title`, `artist`, `peak_position`, `weeks_on_chart`  
+- **Spotify Audio Features:** (same as Research Question 1)  
+- **Genre Information:**  
+  - `primary_genre` (categorical)  
+
+#### **New Variables to be Created**  
+- `avg_feature_by_genre` – Average feature values within each genre.  
+
+#### **External Data to be Merged**  
+- Genre classification from external sources if not present in the dataset. 
 
 ## **5. Expected Insights**  
 - Identification of key musical attributes that consistently define chart-topping hits.  
