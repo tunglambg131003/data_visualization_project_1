@@ -139,7 +139,7 @@ Music trends shift over time due to changes in audience preferences, production 
    - Investigate whether pop music has become **slower, darker, and more melancholic** over time, reflecting shifting listener preferences.
   
 
-### **Research Question 3: Do different genres have distinct success factors?**  
+### **Question 3: Do different genres have distinct success factors?**  
 
 #### **Objective**  
 This question examines whether different musical genres rely on unique audio features for commercial success. Understanding genre-specific characteristics can help artists and producers tailor their sound to maximize chart performance.  
@@ -158,12 +158,12 @@ This question examines whether different musical genres rely on unique audio fea
    - Compare key features (e.g., tempo, energy, and speechiness) between **pop hits** and **hip-hop hits**.  
    - Determine whether hip-hop’s lyrical focus (high speechiness) influences its success differently than pop music’s reliance on danceability.  
 
-#### **Expected Insights**  
+## **5. Expected Insights**  
 - Identification of key musical attributes that consistently define chart-topping hits.  
 - Evidence of shifts in mainstream music trends, including changes in tempo, mood, and genre popularity.  
 - Insights into how major artists adapt their sound to stay relevant over time.  
 
-## **5. Conclusion**  
+## **6. Conclusion**  
 
 This project aims to provide a comprehensive analysis of the factors that contribute to the success of top-charting songs and how music trends have evolved over the past decade. By integrating data from the Billboard Hot 100 and Spotify, we will uncover key audio features that define commercially successful tracks and analyze temporal shifts in musical attributes.  
 
