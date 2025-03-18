@@ -42,5 +42,40 @@ The Billboard Hot 100 dataset contains weekly rankings of the top 100 songs in t
 - **liveness**: Detects the presence of a live audience in the recording (0 to 1).  
 - **valence**: The musical positiveness of the track (0 to 1).  
 - **tempo**: The estimated beats per minute (BPM) of the track.  
-- **duration_ms**: The length of the song in milliseconds.  
+- **duration_ms**: The length of the song in milliseconds.
+
+ 
+- **genres**: A list of genres associated with the song.  
+- **genre_encoding**: A categorical encoding of the song’s genre for classification tasks.  
+
+### **Spotify Song Attributes Dataset**  
+
+The Spotify dataset provides detailed musical attributes for songs and also , including:  
+
+- **track_id**: The unique identifier assigned to the track by Spotify.  
+- **artists**: The names of the artists who performed the track. If multiple artists are featured, their names are separated by a `;`.  
+- **album_name**: The name of the album where the track is included.  
+- **track_name**: The title of the track.  
+- **popularity**: A score ranging from 0 to 100 that represents the track’s overall popularity. This score is determined by the number of times the track has been played and how recently it has been streamed.
+
+- - **danceability**: A value between 0.0 and 1.0 that reflects how well the track is suited for dancing.  
+- **energy**: A rating from 0.0 to 1.0 that measures the song’s intensity and activity level.  
+- **key**: The musical key of the track, represented as an integer (0 = C, 1 = C♯/D♭, ..., 11 = B). If the key is undetectable, the value is `-1`.  
+- **loudness**: The average volume level of the track, measured in decibels (dB).  
+- **mode**: Specifies the musical mode of the track (`0 = Minor`, `1 = Major`).  
+- **speechiness**: A measure between 0.0 and 1.0 that identifies the presence of spoken words in the track.  
+  - Above `0.66`: Likely consists mostly of speech.  
+  - Between `0.33 - 0.66`: A mix of music and spoken elements, such as rap songs.  
+  - Below `0.33`: Primarily instrumental music.  
+- **acousticness**: A confidence score (0.0 to 1.0) that indicates whether the track is acoustic.  
+- **instrumentalness**: Estimates the likelihood that the track is purely instrumental (0.0 to 1.0).  
+  - Higher values suggest minimal or no vocal content.  
+- **liveness**: Determines the probability of the track being recorded with a live audience (0.0 to 1.0).  
+  - Values above `0.8` strongly indicate a live performance.  
+- **valence**: A numerical score (0.0 to 1.0) that represents the track’s emotional tone.  
+  - Higher values suggest positive, cheerful sounds.  
+  - Lower values correspond to somber or tense moods.  
+- **tempo**: The estimated speed of the track, measured in beats per minute (BPM).  
+- **time_signature**: The estimated number of beats per measure, ranging from 3 to 7 (e.g., `3/4` to `7/4`).
+- **track_genre**: The musical genre classification for the track.  
 
