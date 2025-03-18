@@ -132,7 +132,7 @@ This question aims to identify the distinct musical characteristics of commercia
 
 #### **External Data to be Merged**  
 - Spotify’s audio feature dataset (via song title and artist name matching).
-- 
+
 ---
 
 ### **Question 2: How have music trends evolved over the past decade?**  
@@ -174,6 +174,8 @@ Music trends shift over time due to changes in audience preferences, production 
 
 #### **External Data to be Merged**  
 - Genre classification data from an external music database (if not available in Billboard/Spotify datasets).
+
+---
 
 ### **Question 3: Do different genres have distinct success factors?**  
 
