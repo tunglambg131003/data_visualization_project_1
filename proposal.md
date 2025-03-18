@@ -136,7 +136,27 @@ Music trends shift over time due to changes in audience preferences, production 
 
 4. **Case Study: The Shift from Upbeat Pop to Darker, Moodier Music**  
    - Compare the valence and tempo of early 2010s hits (e.g., *Katy Perry’s* *Teenage Dream*) to late 2010s hits (e.g., *Billie Eilish’s* *Bad Guy*).  
-   - Investigate whether pop music has become **slower, darker, and more melancholic** over time, reflecting shifting listener preferences.  
+   - Investigate whether pop music has become **slower, darker, and more melancholic** over time, reflecting shifting listener preferences.
+  
+
+### **Research Question 3: Do different genres have distinct success factors?**  
+
+#### **Objective**  
+This question examines whether different musical genres rely on unique audio features for commercial success. Understanding genre-specific characteristics can help artists and producers tailor their sound to maximize chart performance.  
+
+#### **Methodology**  
+
+1. **Genre Categorization**  
+   - Assign each song in the dataset to a primary genre (pop, rock, hip-hop, EDM, R&B, etc.).  
+   - Compute average values for key audio features within each genre.  
+
+2. **Feature Comparison Across Genres**  
+   - Perform **ANOVA (Analysis of Variance)** tests to determine statistically significant differences in features across genres.  
+   - Create **radar charts** to visualize how audio features differ between genres.  
+
+3. **Case Study: Pop vs. Hip-Hop**  
+   - Compare key features (e.g., tempo, energy, and speechiness) between **pop hits** and **hip-hop hits**.  
+   - Determine whether hip-hop’s lyrical focus (high speechiness) influences its success differently than pop music’s reliance on danceability.  
 
 #### **Expected Insights**  
 - Identification of key musical attributes that consistently define chart-topping hits.  
