@@ -82,13 +82,17 @@ We will use two primary datasets for this analysis:
 ### **Question 1: What are the key audio features that define top-charting songs over the past decade?**  
 
 #### **Objective**  
+
 This question aims to identify the distinct musical characteristics of commercially successful songs by analyzing their audio attributes. By examining the structural and acoustic features of top-ranking tracks, we can determine whether certain properties—such as tempo, energy, and danceability—consistently contribute to a song’s chart performance.  
 
 #### **Methodology**  
 
 1. **Defining "Success" in Chart Performance**  
-   - A song will be classified as "successful" if it has reached a peak position within the **top 10** of the Billboard Hot 100 and remained on the chart for at least **10 weeks**.  
-   - Songs that have charted but failed to enter the top 50 will serve as a control group for comparative analysis.  
+   - A song will be classified as "successful" if it has reached one of these tiers of success (These could be changed more suitably during implementing):
+     - **Tier 1:** Top 10 peak position, remained on the chart for at least **10 weeks**.  
+     - **Tier 2:** Top 50 peak position, remained on the chart for at least **5 weeks**.  
+     - **Tier 3:** Top 100 peak position, remained on the chart for at least **3 weeks**. 
+   - Songs that have charted but failed to enter the top 50 will serve as a control group for comparative analysis. Additionally, we will consider to use a **continuous success measure** (e.g., total weeks on the chart or normalized rank percentile) for more nuanced classification.  
 
 2. **Integration with Spotify’s Audio Features**  
    - Match Billboard chart data with Spotify’s track information using a combination of **song title and artist name**.  
@@ -99,13 +103,21 @@ This question aims to identify the distinct musical characteristics of commercia
      - **Valence:** Indicates the emotional positivity of a track.  
      - **Loudness, Speechiness, and Instrumentalness** as secondary features.  
 
-3. **Statistical Analysis & Data Visualization**  
+3. **Statistical Analysis & Data Visualization**
+   - Segment songs into major genres (e.g., pop, hip-hop, rock, EDM) and examine whether audio features differ significantly in their contribution to success.  
+   - Perform **time-series analysis** to observe whether key features such as tempo, valence, or danceability fluctuate over different periods.  
+   - Identify whether certain features are more critical for **pop hits** compared to **rap hits** (e.g., do rap hits rely more on speechiness and lyrical content?).
+  
+   - Examine whether the relationship between musical attributes and success has **remained stable or shifted over time** for each genre.  
+   - Investigate whether certain trends, such as the rise of electronic production, have influenced hit song characteristics across multiple genres.  
+   
    - Conduct **descriptive statistics** (mean, median, standard deviation) to compare feature distributions between successful and less successful songs.  
    - Generate **correlation matrices** to explore relationships between audio features and chart success.  
-   - Use **histograms and boxplots** to visualize key feature distributions.  
+   - Use **histograms and boxplots** to visualize key feature distributions.
+     
    - Employ **machine learning classification models (e.g., logistic regression, decision trees)** to assess the predictive power of audio features on chart success.  
 
-4. **Example Case Study: The Evolution of Taylor Swift’s Chart-Topping Songs**  
+5. **Example Case Study: The Evolution of Taylor Swift’s Chart-Topping Songs**
    - Taylor Swift, a globally recognized artist, has consistently produced hits across multiple genres (country, pop, and alternative).  
    - By analyzing the audio features of her most successful tracks (e.g., *Shake It Off*, *Blank Space*, *Anti-Hero*), we can investigate whether her musical attributes align with broader trends in hit songs.  
    - A comparative study with her lower-charting songs will highlight whether any specific musical attributes contributed to their differing levels of success.  
@@ -117,7 +129,8 @@ This question aims to identify the distinct musical characteristics of commercia
   - `peak_position` (integer) – highest rank achieved  
   - `weeks_on_chart` (integer) – total number of weeks on the chart  
 
-- **Spotify Audio Features:**  
+- **Spotify Audio Features:**
+  
   - `tempo` (BPM) – speed of the song  
   - `energy` (float) – intensity and loudness (0-1)  
   - `danceability` (float) – how suitable the song is for dancing (0-1)  
@@ -127,15 +140,18 @@ This question aims to identify the distinct musical characteristics of commercia
   - `instrumentalness` (float) – likelihood of being an instrumental track (0-1)
 
 #### **New Variables to be Created**  
-- `hit_song` (binary) – 1 if a song peaked in the **top 10** and remained on the chart for **at least 10 weeks**, 0 otherwise.  
-- `feature_z_score` – Standardized version of each audio feature to compare across different scales.  
+- **`feature_z_score`** – Standardized version of each audio feature to compare across different scales.
+- **`hit_tier`** – Multi-tier success level (1, 2, or 3).  
+- **`feature_trend`** – Time-based trend analysis of each feature.  
+- **`streaming_impact`** – Flagging songs released after streaming milestones.  
+- **`social_media_boost`** – Tagging viral songs using external data (e.g., TikTok).
 
 #### **External Data to be Merged**  
 - Spotify’s audio feature dataset (via song title and artist name matching).
 
 ---
 
-### **Question 2: How have music trends evolved over the past decade?**  
+### **Question 2: How have musical trends evolved over time in relation to major industry shifts?**  
 
 #### **Objective**  
 Music trends shift over time due to changes in audience preferences, production techniques, and industry innovations. This research question explores whether certain musical features—such as tempo, energy, and mood—have changed significantly over the years, reflecting broader trends in popular music.  
@@ -150,14 +166,35 @@ Music trends shift over time due to changes in audience preferences, production 
 2. **Time-Series Analysis**  
    - Use **line graphs** to visualize year-over-year changes in musical attributes.  
    - Apply **linear regression** and **moving averages** to identify long-term trends in tempo, valence, and other features.  
-   - Investigate whether certain genres have increased or decreased in prominence over time by tracking their proportional representation in the dataset.  
+   - Investigate whether certain genres have increased or decreased in prominence over time by tracking their proportional representation in the dataset.
+   - Compute yearly averages for key audio features (e.g., tempo, energy, loudness, valence).
+   - Perform **segmented regression analysis** to detect abrupt shifts in musical styles.
+   - Overlay key historical events onto trend visualizations, such as:  
+       - **2008–2010:** The decline of physical album sales and rise of digital downloads.  
+       - **2015–Present:** The dominance of streaming platforms (Spotify, Apple Music).  
+       - **2020–2022:** The influence of short-form video platforms (TikTok) on song virality.  
 
-3. **Comparative Genre Analysis: The Rise of Hip-Hop & Decline of Rock**  
-   - Previous studies suggest that hip-hop has overtaken rock as the dominant genre in mainstream music.  
-   - Compare the **audio features** of hip-hop tracks (e.g., *Drake's* and *Kanye West’s* songs) versus rock tracks (e.g., *Imagine Dragons* or *Coldplay*) to observe stylistic shifts.  
-   - Analyze whether modern rock songs have incorporated more rhythmic and electronic elements to align with popular trends.  
+3. **Dynamic Genre Comparison Using Unsupervised Learning**
+   Traditional genre labels may be limiting, as they fail to capture how musical styles evolve. Instead of relying on predefined genre tags, this analysis will:  
+      - **Apply Clustering Algorithms (e.g., K-Means, DBSCAN, Hierarchical Clustering)** on **audio features** to identify distinct musical styles.  
+      - Track **how clusters evolve** over time, highlighting the emergence of new subgenres.  
+      - Compare these data-driven genre clusters with traditional genre labels from Billboard or Spotify to identify discrepancies.
+        ##### **Example: Evolution of Hip-Hop & Pop Hybrids**
+        - In the 2000s, hip-hop and pop were more distinct.
+        - In the 2010s, a new cluster may emerge, representing **pop-rap fusion** (e.g., Drake, Post Malone).
+        - By analyzing feature distributions over time, we can see **when and how genres start blending**.  
 
-4. **Case Study: The Shift from Upbeat Pop to Darker, Moodier Music**  
+4. **Linking Genre Evolution to Industry Shifts**
+   - Identify whether **certain clusters become more dominant** following industry changes (e.g., Do high-energy clusters gain popularity post-2015 as streaming grows?).
+   - Investigate **whether newer music styles** emerge in response to changing consumption patterns (e.g., the rise of shorter, hook-driven tracks due to TikTok).
+   - Study how **cross-genre collaborations** (e.g., Latin pop + hip-hop) impact success metrics over time.  
+
+5. **Implications of Dynamic Genre Evolution**
+   - Instead of treating genres as fixed, this approach helps **artists and producers understand how styles shift** and where music is headed.
+   - Helps **music labels identify emerging trends** for talent scouting and marketing strategies.
+   - Provides a **more accurate framework** for studying music trends beyond traditional genre definitions.   
+
+6. **Case Study: The Shift from Upbeat Pop to Darker, Moodier Music**  
    - Compare the valence and tempo of early 2010s hits (e.g., *Katy Perry’s* *Teenage Dream*) to late 2010s hits (e.g., *Billie Eilish’s* *Bad Guy*).  
    - Investigate whether pop music has become **slower, darker, and more melancholic** over time, reflecting shifting listener preferences.
 
@@ -177,24 +214,40 @@ Music trends shift over time due to changes in audience preferences, production 
 
 ---
 
-### **Question 3: Do different genres have distinct success factors?**  
+### **Question 3: Why do different genres achieve success in distinct ways, and what insights can this provide for artists?**  
 
 #### **Objective**  
 This question examines whether different musical genres rely on unique audio features for commercial success. Understanding genre-specific characteristics can help artists and producers tailor their sound to maximize chart performance.  
 
 #### **Methodology**  
 
-1. **Genre Categorization**  
-   - Assign each song in the dataset to a primary genre (pop, rock, hip-hop, EDM, R&B, etc.).  
-   - Compute average values for key audio features within each genre.  
+#### **Methodology**  
+1. **Statistical Comparison of Features Across Genres**  
+   - Perform **ANOVA tests** to determine whether key features (e.g., danceability, speechiness, energy) vary significantly across genres.  
+   - Use **radar charts** to visually compare feature distributions.  
 
-2. **Feature Comparison Across Genres**  
-   - Perform **ANOVA (Analysis of Variance)** tests to determine statistically significant differences in features across genres.  
-   - Create **radar charts** to visualize how audio features differ between genres.  
+2. **Understanding Genre-Specific Success Factors**  
+   - Analyze **why** certain genres emphasize specific features:  
+     - **Hip-hop/Rap**: Higher speechiness scores due to lyrical focus—how does this impact hit probability?  
+     - **EDM/Pop**: Higher danceability and energy—are faster, more rhythmic songs more likely to become hits?  
+     - **Acoustic Genres (Folk, Indie)**: Higher acousticness—do slower, softer songs follow a different success trajectory?  
 
-3. **Case Study: Pop vs. Hip-Hop**  
+3. **Industry & Artist Implications**  
+   - Discuss **how artists can leverage these insights** to optimize their songwriting and production choices.  
+   - Explore whether collaborations between genres (e.g., pop-rap crossovers) benefit from blending different success factors.  
+   - Investigate the role of **non-musical factors** (e.g., social media marketing, TikTok virality) in genre-specific success strategies.
+
+4. **Case Study: Pop vs. Hip-Hop**  
    - Compare key features (e.g., tempo, energy, and speechiness) between **pop hits** and **hip-hop hits**.  
    - Determine whether hip-hop’s lyrical focus (high speechiness) influences its success differently than pop music’s reliance on danceability.
+    
+5. **Additional Considerations**  
+- **Song Length & Release Timing**:  
+  - Analyze whether **shorter songs** have become more dominant due to streaming revenue models.  
+  - Examine **seasonal trends**—are summer releases more likely to be dance tracks?  
+- **Social Media & Digital Influence**:  
+  - Consider the impact of platforms like **TikTok and Instagram Reels** on song popularity.  
+  - Investigate how artist collaborations and viral challenges influence a song’s trajectory.  
   
 #### **Variables Involved**  
 - **Billboard Chart Data:**  
@@ -204,10 +257,11 @@ This question examines whether different musical genres rely on unique audio fea
   - `primary_genre` (categorical)  
 
 #### **New Variables to be Created**  
-- `avg_feature_by_genre` – Average feature values within each genre.  
+- `avg_feature_by_genre` – Average feature values within each genre.
+- `danceability_viral_index` – Danceability correlation with viral trends.  
 
 #### **External Data to be Merged**  
-- Genre classification from external sources if not present in the dataset. 
+- Genre classification from external sources if not present in the dataset (if they are available). 
 
 ## **5. Expected Insights**  
 - Identification of key musical attributes that consistently define chart-topping hits.  
@@ -220,4 +274,4 @@ This project aims to provide a comprehensive analysis of the factors that contri
 
 Our findings will offer valuable insights into the music industry, benefiting artists, producers, and researchers seeking to understand the dynamics of popular music. Additionally, this study will serve as a foundation for future work in music recommendation systems, hit song prediction models, and cultural trend analysis. By leveraging data-driven methodologies, we hope to contribute to a deeper understanding of how music resonates with listeners and adapts to changing audience preferences over time.  
 
-Ultimately, this research will bridge the gap between music analytics and industry applications, providing meaningful interpretations of why certain songs achieve widespread popularity and how the sonic landscape continues to evolve.  
+Ultimately, this research will bridge the gap between music analytics and industry applications, providing meaningful interpretations of why certain songs achieve widespread popularity and how the sonic landscape continues to evolve. 
