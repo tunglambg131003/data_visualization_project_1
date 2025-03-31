@@ -266,7 +266,11 @@ This question examines whether different musical genres rely on unique audio fea
 ## **5. Expected Insights**  
 - Identification of key musical attributes that consistently define chart-topping hits.  
 - Evidence of shifts in mainstream music trends, including changes in tempo, mood, and genre popularity.  
-- Insights into how major artists adapt their sound to stay relevant over time.  
+- Insights into how major artists adapt their sound to stay relevant over time.
+
+- **Quantify genre-specific success mechanisms**—determine whether some genres rely more on **TikTok virality vs. traditional radio play vs. streaming traction**.  
+- **Identify shifting trends**—assess whether modern hits are increasingly defined by **short-form content influence (TikTok, Shazam)**.  
+- **Give practical insights for artists**—reveal **which genre features** musicians should focus on (e.g., rap → speechiness; EDM → danceability).  
 
 ## **6. Conclusion**  
 
