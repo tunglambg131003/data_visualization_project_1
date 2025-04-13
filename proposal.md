@@ -1,4 +1,4 @@
-# **Proposal: Top Hit Songs Data Analysis & Visualization**
+# **Proposal: Billboard Top Hit Songs Data Analysis & Visualization**
 
 ## **1. Introduction** 
 
@@ -16,7 +16,23 @@ Specifically, by examining top hit songs, this study aims to explore:
 
 ## **2. Dataset Description**  
 
-We will use two primary datasets for this analysis:  
+We utilized a publicly available dataset originally compiled by other authors. The dataset was created using a custom Scrapy web crawler to collect weekly *Billboard Hot 100* chart data from **January 4, 1960**, to **April 2, 2022**, resulting in **324,787** records. To focus on influential songs, the author selected the top 50 tracks from each year based on their chart longevity, reducing the dataset to **3,150** entries.
+
+These records were then enriched using the **Spotify for Developers API**, adding **21** musical and metadata attributes, including:
+
+- Danceability  
+- Tempo  
+- Acousticness  
+- Valence  
+- Genre  
+...
+
+This comprehensive dataset offers a rich foundation for multi-dimensional analysis of popular music trends across decades.
+
+The full dataset resources are publicly available at:  
+[https://github.com/Ikea-179/Top-Hit-Songs-Data-Analysis-and-Visualization/tree/main/Datasets](https://github.com/Ikea-179/Top-Hit-Songs-Data-Analysis-and-Visualization/tree/main/Datasets)
+
+You can find the list of all attributes in the following table.
 
 ### **Billboard Hot 100 Dataset**  
 
@@ -45,34 +61,10 @@ We will use two primary datasets for this analysis:
 | `genres`       | A list of genres associated with the song. |
 | `genre_encoding` | A categorical encoding of the song’s genre for classification tasks. |
 
-
-### **Spotify Song Attributes Dataset**  
-
-| **Column**       | **Description** |
-|-----------------|----------------|
-| `track_id`     | The unique identifier assigned to the track by Spotify. |
-| `artists`      | The names of the artists who performed the track (separated by `;` if multiple artists). |
-| `album_name`   | The name of the album where the track is included. |
-| `track_name`   | The title of the track. |
-| `popularity`   | A score (0-100) representing the track’s overall popularity based on streams. |
-| `danceability` | A value (0.0 - 1.0) reflecting how well the track is suited for dancing. |
-| `energy`       | A rating (0.0 - 1.0) measuring the song’s intensity and activity level. |
-| `key`          | The musical key of the track (0 = C, 1 = C♯/D♭, ..., 11 = B), `-1` if undetectable. |
-| `loudness`     | The average volume level of the track in decibels (dB). |
-| `mode`         | Specifies the musical mode (`0 = Minor`, `1 = Major`). |
-| `speechiness`  | A measure (0.0 - 1.0) of spoken words in the track. |
-| `acousticness` | A confidence score (0.0 - 1.0) indicating whether the track is acoustic. |
-| `instrumentalness` | Estimates the likelihood that the track is purely instrumental (0.0 - 1.0). |
-| `liveness`     | Probability of the track being recorded with a live audience (0.0 - 1.0). |
-| `valence`      | A numerical score (0.0 - 1.0) representing the track’s emotional tone. |
-| `tempo`        | The estimated speed of the track in beats per minute (BPM). |
-| `time_signature` | The estimated number of beats per measure (3 to 7, e.g., `3/4` to `7/4`). |
-| `track_genre`  | The musical genre classification for the track. |
-
 ## **3. Motivation for Dataset Selection**  
 
 - Billboard and Spotify are two of the most authoritative sources in music rankings.  
-- The dataset includes over 50,000 samples, providing a diverse and extensive collection that meets the criteria for Project 1. It contains both numerical and categorical features, enabling a comprehensive analysis of feature distributions. Additionally, the large dataset size presents opportunities to explore data preprocessing techniques and handle real-world challenges.
+- The dataset includes over 300,000 samples, providing a diverse and extensive collection that meets the criteria for Project 1. It contains both numerical and categorical features, enabling a comprehensive analysis of feature distributions. Additionally, the large dataset size presents opportunities to explore data preprocessing techniques and handle real-world challenges.
 - The music industry is highly dynamic, with shifts in genre preferences, production styles, and audience engagement over time. Analyzing chart-topping songs can help identify patterns in musical composition and consumer behavior, shedding light on how certain audio attributes influence a song’s success.
 - Music is a reflection of cultural and technological changes over time. By examining how key musical attributes have evolved across different decades, we can explore broader sociocultural influences on music production and audience reception. This long-term perspective enhances our understanding of how technological advancements, such as digital production tools, impact song composition and arrangement.
 - The insights gained from this research have implications beyond the music industry. Understanding the relationship between audio features and song success can benefit fields such as marketing, recommender systems, and artificial intelligence in music generation.
@@ -211,57 +203,6 @@ Music trends shift over time due to changes in audience preferences, production 
 
 #### **External Data to be Merged**  
 - Genre classification data from an external music database (if not available in Billboard/Spotify datasets).
-
----
-
-### **Question 3: Why do different genres achieve success in distinct ways, and what insights can this provide for artists?**  
-
-#### **Objective**  
-This question examines whether different musical genres rely on unique audio features for commercial success. Understanding genre-specific characteristics can help artists and producers tailor their sound to maximize chart performance.  
-
-#### **Methodology**  
-
-#### **Methodology**  
-1. **Statistical Comparison of Features Across Genres**  
-   - Perform **ANOVA tests** to determine whether key features (e.g., danceability, speechiness, energy) vary significantly across genres.  
-   - Use **radar charts** to visually compare feature distributions.  
-
-2. **Understanding Genre-Specific Success Factors**  
-   - Analyze **why** certain genres emphasize specific features:  
-     - **Hip-hop/Rap**: Higher speechiness scores due to lyrical focus—how does this impact hit probability?  
-     - **EDM/Pop**: Higher danceability and energy—are faster, more rhythmic songs more likely to become hits?  
-     - **Acoustic Genres (Folk, Indie)**: Higher acousticness—do slower, softer songs follow a different success trajectory?  
-
-3. **Industry & Artist Implications**  
-   - Discuss **how artists can leverage these insights** to optimize their songwriting and production choices.  
-   - Explore whether collaborations between genres (e.g., pop-rap crossovers) benefit from blending different success factors.  
-   - Investigate the role of **non-musical factors** (e.g., social media marketing, TikTok virality) in genre-specific success strategies.
-
-4. **Case Study: Pop vs. Hip-Hop**  
-   - Compare key features (e.g., tempo, energy, and speechiness) between **pop hits** and **hip-hop hits**.  
-   - Determine whether hip-hop’s lyrical focus (high speechiness) influences its success differently than pop music’s reliance on danceability.
-    
-5. **Additional Considerations**  
-- **Song Length & Release Timing**:  
-  - Analyze whether **shorter songs** have become more dominant due to streaming revenue models.  
-  - Examine **seasonal trends**—are summer releases more likely to be dance tracks?  
-- **Social Media & Digital Influence**:  
-  - Consider the impact of platforms like **TikTok and Instagram Reels** on song popularity.  
-  - Investigate how artist collaborations and viral challenges influence a song’s trajectory.  
-  
-#### **Variables Involved**  
-- **Billboard Chart Data:**  
-  - `song_title`, `artist`, `peak_position`, `weeks_on_chart`  
-- **Spotify Audio Features:** (same as Research Question 1)  
-- **Genre Information:**  
-  - `primary_genre` (categorical)  
-
-#### **New Variables to be Created**  
-- `avg_feature_by_genre` – Average feature values within each genre.
-- `danceability_viral_index` – Danceability correlation with viral trends.  
-
-#### **External Data to be Merged**  
-- Genre classification from external sources if not present in the dataset (if they are available). 
 
 ## **5. Expected Insights**  
 - Identification of key musical attributes that consistently define chart-topping hits.  
