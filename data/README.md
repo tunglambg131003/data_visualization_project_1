@@ -5,11 +5,10 @@
 **Description:** The dataset was created using a custom Scrapy web crawler to collect weekly *Billboard Hot 100* chart data from **January 4, 1960**, to **April 2, 2022**, resulting in **324,787** records. To focus on influential songs, the author selected the top 50 tracks from each year based on their chart longevity, reducing the dataset to **3,150** entries. These records were then enriched using the **Spotify for Developers API**, adding **21** musical and metadata attributes. 
 
 2. Provenance  
-**Source:** [Billboard Hot 100 Dataset ](https://github.com/Ikea-179/Top-Hit-Songs-Data-Analysis-and-Visualization/tree/main/Datasets)    
+**Source:** [Billboard Hot 100 Dataset](https://github.com/Ikea-179/Top-Hit-Songs-Data-Analysis-and-Visualization/tree/main/Datasets)  
+**Original Publisher:** [Ikea-179](https://github.com/Ikea-179)  
+**Data Collection:** Information compiled from Billboard statistics and Spotify metadata.
 
-**Original Publisher:** [Ikea-179 ](https://github.com/Ikea-179)
-
-**Data Collection:** Information compiled from Billboard statistics and Spotify metadata. 
 
 3. Dataset Structure  
 The dataset contains the following key components:
