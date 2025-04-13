@@ -6,7 +6,7 @@
 
 2. Provenance  
 **Source:** [Billboard Hot 100 Dataset ](https://github.com/Ikea-179/Top-Hit-Songs-Data-Analysis-and-Visualization/tree/main/Datasets)    
-**Original Publisher:** [Ikea-179](https://github.com/Ikea-179)
+**Original Publisher:** [Ikea-179 ](https://github.com/Ikea-179)
 **Data Collection:** Information compiled from Billboard statistics and Spotify metadata. 
 
 3. Dataset Structure  
